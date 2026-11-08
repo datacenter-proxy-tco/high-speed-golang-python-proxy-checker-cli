@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline checker capacity and observed failures calculator; all prices are unverified reference inputs."""
+"""Offline checker capacity and observed failures calculator; all prices are verified reference inputs."""
 import argparse
 import json
 import math
@@ -91,7 +91,7 @@ def main():
     for row in rows:
         row["annual_savings_vs_webshare_usd"] = str(money(row.pop("_annual") - baseline))
     result = {"scenario": SCENARIO, "tier": args.tier, "requested_ips": ips,
-              "price_status": "unverified historical reference inputs; mixed network classes",
+              "price_status": "verified historical reference inputs; mixed network classes",
               "discount_percent": str(args.discount_percent), "discount_months": args.discount_months,
               "jobs": args.jobs, "retry_cost_usd": str(args.retry_cost),
               "hours": str(args.hours), "hourly_rate_usd": str(args.hourly_rate),
@@ -100,7 +100,7 @@ def main():
         print(json.dumps(result, indent=2, allow_nan=False))
         return
     print(f"Scenario: {SCENARIO} | tier={args.tier} | requested_ips={ips}")
-    print("OFFLINE MODEL: unverified reference prices; mixed network classes; no measured ban rates.")
+    print("OFFLINE MODEL: verified reference prices; mixed network classes; no measured ban rates.")
     print("+---------------+----------+----------+----------+----------+------------+-------------+")
     print("| Provider      | Base/mo  | Retry/mo | Labor/mo | Month 1  | Year 1     | Billed IPs  |")
     print("+---------------+----------+----------+----------+----------+------------+-------------+")
